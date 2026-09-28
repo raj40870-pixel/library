@@ -1,0 +1,12 @@
+prefix=/data/data/com.termux/files/usr
+exec_prefix=/data/data/com.termux/files/usr
+libdir=/data/data/com.termux/files/usr/lib
+includedir=/data/data/com.termux/files/usr/include
+modlibexecdir=/data/data/com.termux/files/usr/lib/pulseaudio/modules
+
+Name: libpulse
+Description: PulseAudio Client Interface
+Version: 17.0-dirty
+Libs: -L${libdir} -lpulse -pthread
+Libs.private: -L${libdir}/pulseaudio -lpulsecommon-17.0
+Cflags: -I${includedir} -D_REENTRANT

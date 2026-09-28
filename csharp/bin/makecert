@@ -1,0 +1,3 @@
+#!/data/data/com.termux/files/usr/bin/sh
+umask 077
+exec /data/data/com.termux/files/usr/bin/mono $MONO_OPTIONS /data/data/com.termux/files/usr/lib/mono/4.5/makecert.exe "$@"

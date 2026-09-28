@@ -1,0 +1,11 @@
+prefix=/data/data/com.termux/files/usr
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: webrtc-audio-coding-1
+Description: WebRTC Audio Coding library
+Version: 1.3
+Requires.private: absl_base, absl_flags, absl_strings, absl_synchronization, absl_bad_optional_access
+Libs: -L${libdir} -lwebrtc-audio-coding-1
+Libs.private: -llog
+Cflags: -I${includedir}/webrtc-audio-processing-1 -DWEBRTC_LIBRARY_IMPL -DWEBRTC_POSIX

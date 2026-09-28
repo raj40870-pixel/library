@@ -1,0 +1,8 @@
+lib/liblua++5.4.so -> liblua++5.4.so.5.4.8
+lib/liblua++5.4.so.5.4 -> liblua++5.4.so.5.4.8
+lib/liblua5.4.so -> liblua5.4.so.5.4.8
+lib/liblua5.4.so.5.4 -> liblua5.4.so.5.4.8
+lib/pkgconfig/lua++-5.4.pc -> lua++54.pc
+lib/pkgconfig/lua++5.4.pc -> lua++54.pc
+lib/pkgconfig/lua-5.4.pc -> lua54.pc
+lib/pkgconfig/lua5.4.pc -> lua54.pc

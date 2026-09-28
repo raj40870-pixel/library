@@ -1,0 +1,2 @@
+#!/data/data/com.termux/files/usr/bin/sh
+MONO_GC_PARAMS="nursery-size=64m,$MONO_GC_PARAMS" exec /data/data/com.termux/files/usr/bin/mono $MONO_OPTIONS /data/data/com.termux/files/usr/lib/mono/xbuild/14.0/bin/xbuild.exe "$@"
