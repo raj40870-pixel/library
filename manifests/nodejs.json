@@ -1,0 +1,36 @@
+{
+  "target": "nodejs",
+  "displayName": "Node.js (JavaScript)",
+  "runtimeFolder": "nodejs",
+  "version": "26.4.0-1",
+  "arch": "aarch64",
+  "category": "interpreted",
+  "minAndroidApi": 24,
+  "fileCount": 2490,
+  "extractedSizeBytes": 207353411,
+  "extractedSizeMB": "197.75",
+  "symlinksCount": 23,
+  "primaryExecutable": "bin/node",
+  "testCommand": "node -v",
+  "compileCommand": null,
+  "runCommand": "node \"$FILE\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "c-ares",
+    "libandroid-execinfo",
+    "libicu",
+    "libnghttp2",
+    "openssl",
+    "zlib"
+  ],
+  "downloadUrl": "/downloads/aarch64/nodejs-26.4.0-1-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s nodejs",
+  "description": "Node.js v26 JavaScript runtime built on Chrome V8 engine with full async I/O.",
+  "status": "stable",
+  "verified": true
+}

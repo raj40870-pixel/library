@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Generated distribution archives (> 95 MB files shouldn't be tracked directly in git)
+downloads/*.tar.gz
+downloads/*.zip
+downloads/*.tar.xz
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# OS Metadata
+.DS_Store
+Thumbs.db

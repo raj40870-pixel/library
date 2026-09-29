@@ -1,0 +1,33 @@
+{
+  "target": "go",
+  "displayName": "Go (Golang)",
+  "runtimeFolder": "go",
+  "version": "3:1.27.1",
+  "arch": "aarch64",
+  "category": "compiled",
+  "minAndroidApi": 24,
+  "fileCount": 15765,
+  "extractedSizeBytes": 777070544,
+  "extractedSizeMB": "741.07",
+  "symlinksCount": 112,
+  "primaryExecutable": "bin/go",
+  "testCommand": "go version",
+  "compileCommand": "go build -o \"$OUTPUT\" \"$FILE\"",
+  "runCommand": "go run \"$FILE\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "binutils",
+    "clang",
+    "libc++"
+  ],
+  "downloadUrl": "/downloads/aarch64/go-3:1.27.1-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s go",
+  "description": "Go language compiler, standard library, and tooling with CGO support.",
+  "status": "stable",
+  "verified": true
+}

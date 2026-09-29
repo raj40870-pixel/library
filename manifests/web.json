@@ -1,0 +1,31 @@
+{
+  "target": "web",
+  "displayName": "Web (HTML / CSS / JS Server)",
+  "runtimeFolder": "python",
+  "version": "3.14.6-1",
+  "arch": "aarch64",
+  "category": "web_server",
+  "minAndroidApi": 24,
+  "fileCount": 1413,
+  "extractedSizeBytes": 60598370,
+  "extractedSizeMB": "57.79",
+  "symlinksCount": 94,
+  "primaryExecutable": "bin/python3",
+  "testCommand": "python3 -c \"import http.server; print('HTTP Server Ready')\"",
+  "compileCommand": null,
+  "runCommand": "python3 -m http.server 8080 --directory .",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "python"
+  ],
+  "downloadUrl": "/downloads/aarch64/python-3.14.6-1-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s python",
+  "description": "Static web application server for live previewing HTML, CSS, and client-side JavaScript.",
+  "status": "stable",
+  "verified": true
+}

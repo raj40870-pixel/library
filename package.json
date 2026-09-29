@@ -1,0 +1,32 @@
+{
+  "name": "termcode-library-server",
+  "version": "1.0.0",
+  "description": "Official Runtime & Toolchain Distribution Server for TermCode Android IDE (aarch64)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "audit": "node scripts/audit-library.js",
+    "manifests": "node scripts/build-manifests.js",
+    "package": "node scripts/package-runtimes.js",
+    "validate": "node scripts/validate-library.js",
+    "test": "node scripts/test-server.js"
+  },
+  "keywords": [
+    "termcode",
+    "termux",
+    "runtime",
+    "aarch64",
+    "android",
+    "ide",
+    "toolchain",
+    "compiler"
+  ],
+  "author": "TermCode IDE Team",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

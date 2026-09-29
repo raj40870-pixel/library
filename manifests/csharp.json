@@ -1,0 +1,32 @@
+{
+  "target": "csharp",
+  "displayName": "C# (Mono CLI & MCS)",
+  "runtimeFolder": "csharp",
+  "version": "6.14.1-2",
+  "arch": "aarch64",
+  "category": "compiled_bytecode",
+  "minAndroidApi": 24,
+  "fileCount": 3787,
+  "extractedSizeBytes": 308826009,
+  "extractedSizeMB": "294.52",
+  "symlinksCount": 257,
+  "primaryExecutable": "bin/mcs",
+  "testCommand": "mcs --version",
+  "compileCommand": "mcs \"$FILE\" -out:\"${FILE%.*}.exe\"",
+  "runCommand": "mono \"${FILE%.*}.exe\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "krb5",
+    "zlib"
+  ],
+  "downloadUrl": "/downloads/aarch64/csharp-6.14.1-2-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s csharp",
+  "description": "Mono open-source ECMA CLI, C# compiler (mcs), runtime engine, and BCL libraries.",
+  "status": "stable",
+  "verified": true
+}

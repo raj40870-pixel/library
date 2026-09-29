@@ -1,0 +1,36 @@
+{
+  "target": "rust",
+  "displayName": "Rust (Rustc & Cargo)",
+  "runtimeFolder": "rust",
+  "version": "1.98.1-1",
+  "arch": "aarch64",
+  "category": "compiled",
+  "minAndroidApi": 24,
+  "fileCount": 8290,
+  "extractedSizeBytes": 1285631721,
+  "extractedSizeMB": "1226.07",
+  "symlinksCount": 133,
+  "primaryExecutable": "bin/rustc",
+  "testCommand": "rustc --version",
+  "compileCommand": "rustc \"$FILE\" -o \"$OUTPUT\"",
+  "runCommand": "./\"$OUTPUT\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "binutils",
+    "clang",
+    "libc++",
+    "libllvm",
+    "openssl",
+    "zlib"
+  ],
+  "downloadUrl": "/downloads/aarch64/rust-1.98.1-1-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s rust",
+  "description": "Rust compiler (rustc), Cargo package manager, and standard library for aarch64.",
+  "status": "stable",
+  "verified": true
+}

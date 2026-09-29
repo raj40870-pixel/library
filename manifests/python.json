@@ -1,0 +1,40 @@
+{
+  "target": "python",
+  "displayName": "Python 3 (CPython 3.14)",
+  "runtimeFolder": "python",
+  "version": "3.14.6-1",
+  "arch": "aarch64",
+  "category": "interpreted",
+  "minAndroidApi": 24,
+  "fileCount": 1413,
+  "extractedSizeBytes": 60598370,
+  "extractedSizeMB": "57.79",
+  "symlinksCount": 94,
+  "primaryExecutable": "bin/python3",
+  "testCommand": "python3 --version",
+  "compileCommand": null,
+  "runCommand": "python3 -u \"$FILE\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "libandroid-support",
+    "libbz2",
+    "libexpat",
+    "libffi",
+    "liblzma",
+    "libsqlite",
+    "ncurses",
+    "openssl",
+    "readline",
+    "zlib"
+  ],
+  "downloadUrl": "/downloads/aarch64/python-3.14.6-1-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s python",
+  "description": "CPython 3.14 interpreter with full standard library, SSL, SQLite3, and package manager support.",
+  "status": "stable",
+  "verified": true
+}
