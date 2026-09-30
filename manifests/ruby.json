@@ -1,0 +1,38 @@
+{
+  "target": "ruby",
+  "displayName": "Ruby (Ruby & Gem)",
+  "runtimeFolder": "ruby",
+  "version": "4.0.7",
+  "arch": "aarch64",
+  "category": "interpreted",
+  "minAndroidApi": 24,
+  "fileCount": 3229,
+  "extractedSizeBytes": 74577664,
+  "extractedSizeMB": "71.12",
+  "symlinksCount": 59,
+  "primaryExecutable": "bin/ruby",
+  "testCommand": "ruby -v",
+  "compileCommand": null,
+  "runCommand": "ruby \"$FILE\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "libcrypt",
+    "libffi",
+    "libgmp",
+    "libyaml",
+    "ncurses",
+    "openssl",
+    "readline",
+    "zlib"
+  ],
+  "downloadUrl": "/downloads/aarch64/ruby-4.0.7-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s ruby",
+  "description": "Ruby dynamic object-oriented programming language interpreter and RubyGems.",
+  "status": "stable",
+  "verified": true
+}

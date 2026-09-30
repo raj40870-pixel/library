@@ -1,0 +1,12 @@
+prefix=/data/data/com.termux/files/usr
+exec_prefix=${prefix}
+libdir=/data/data/com.termux/files/usr/lib
+includedir=/data/data/com.termux/files/usr/include
+
+Name: capstone
+Description: Capstone disassembly engine
+Version: 5.0.9
+URL: https://www.capstone-engine.org/
+archive=${libdir}/libcapstone.a
+Libs: -L${libdir} -lcapstone
+Cflags: -I${includedir}/capstone

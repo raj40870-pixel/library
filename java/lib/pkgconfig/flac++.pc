@@ -1,0 +1,11 @@
+prefix=/data/data/com.termux/files/usr
+exec_prefix=${prefix}
+libdir=/data/data/com.termux/files/usr/lib
+includedir=/data/data/com.termux/files/usr/include
+
+Name: FLAC++
+Description: Free Lossless Audio Codec Library (C++ API)
+Version: 1.5.0
+Requires: flac
+Libs: -L${libdir} -lFLAC++
+Cflags: -I${includedir}

@@ -1,0 +1,150 @@
+{
+  "schemaVersion": "1.0.0",
+  "server": "TermCode Runtime Distribution Server",
+  "arch": "aarch64",
+  "minAndroidApi": 24,
+  "updatedAt": "2026-09-29T16:01:02.264Z",
+  "totalTargets": 14,
+  "runtimes": {
+    "c": {
+      "target": "c",
+      "displayName": "C (Clang / LLVM)",
+      "version": "21.1.8-3",
+      "category": "compiled",
+      "runtimeFolder": "c_cpp",
+      "sizeMB": "526.95",
+      "executable": "bin/clang",
+      "manifestUrl": "/api/runtime/c?arch=aarch64"
+    },
+    "cpp": {
+      "target": "cpp",
+      "displayName": "C++ (Clang++ / LLVM)",
+      "version": "21.1.8-3",
+      "category": "compiled",
+      "runtimeFolder": "c_cpp",
+      "sizeMB": "526.95",
+      "executable": "bin/clang++",
+      "manifestUrl": "/api/runtime/cpp?arch=aarch64"
+    },
+    "java": {
+      "target": "java",
+      "displayName": "Java (OpenJDK 21)",
+      "version": "21.0.12",
+      "category": "compiled_bytecode",
+      "runtimeFolder": "java",
+      "sizeMB": "192.02",
+      "executable": "bin/javac",
+      "manifestUrl": "/api/runtime/java?arch=aarch64"
+    },
+    "python": {
+      "target": "python",
+      "displayName": "Python 3 (CPython 3.14)",
+      "version": "3.14.6-1",
+      "category": "interpreted",
+      "runtimeFolder": "python",
+      "sizeMB": "57.79",
+      "executable": "bin/python3",
+      "manifestUrl": "/api/runtime/python?arch=aarch64"
+    },
+    "nodejs": {
+      "target": "nodejs",
+      "displayName": "Node.js (JavaScript)",
+      "version": "26.4.0-1",
+      "category": "interpreted",
+      "runtimeFolder": "nodejs",
+      "sizeMB": "197.75",
+      "executable": "bin/node",
+      "manifestUrl": "/api/runtime/nodejs?arch=aarch64"
+    },
+    "typescript": {
+      "target": "typescript",
+      "displayName": "TypeScript",
+      "version": "26.4.0-1",
+      "category": "transpiled",
+      "runtimeFolder": "nodejs",
+      "sizeMB": "197.75",
+      "executable": "bin/node",
+      "manifestUrl": "/api/runtime/typescript?arch=aarch64"
+    },
+    "go": {
+      "target": "go",
+      "displayName": "Go (Golang)",
+      "version": "3:1.27.1",
+      "category": "compiled",
+      "runtimeFolder": "go",
+      "sizeMB": "741.07",
+      "executable": "bin/go",
+      "manifestUrl": "/api/runtime/go?arch=aarch64"
+    },
+    "rust": {
+      "target": "rust",
+      "displayName": "Rust (Rustc & Cargo)",
+      "version": "1.98.1-1",
+      "category": "compiled",
+      "runtimeFolder": "rust",
+      "sizeMB": "1226.07",
+      "executable": "bin/rustc",
+      "manifestUrl": "/api/runtime/rust?arch=aarch64"
+    },
+    "kotlin": {
+      "target": "kotlin",
+      "displayName": "Kotlin (Kotlinc)",
+      "version": "2.4.20",
+      "category": "compiled_bytecode",
+      "runtimeFolder": "kotlin",
+      "sizeMB": "283.18",
+      "executable": "bin/kotlinc",
+      "manifestUrl": "/api/runtime/kotlin?arch=aarch64"
+    },
+    "csharp": {
+      "target": "csharp",
+      "displayName": "C# (Mono CLI & MCS)",
+      "version": "6.14.1-2",
+      "category": "compiled_bytecode",
+      "runtimeFolder": "csharp",
+      "sizeMB": "294.52",
+      "executable": "bin/mcs",
+      "manifestUrl": "/api/runtime/csharp?arch=aarch64"
+    },
+    "php": {
+      "target": "php",
+      "displayName": "PHP (PHP-CLI)",
+      "version": "8.5.1",
+      "category": "interpreted",
+      "runtimeFolder": "php",
+      "sizeMB": "254.73",
+      "executable": "bin/php",
+      "manifestUrl": "/api/runtime/php?arch=aarch64"
+    },
+    "ruby": {
+      "target": "ruby",
+      "displayName": "Ruby (Ruby & Gem)",
+      "version": "4.0.7",
+      "category": "interpreted",
+      "runtimeFolder": "ruby",
+      "sizeMB": "71.12",
+      "executable": "bin/ruby",
+      "manifestUrl": "/api/runtime/ruby?arch=aarch64"
+    },
+    "lua": {
+      "target": "lua",
+      "displayName": "Lua 5.4",
+      "version": "5.4.8-10",
+      "category": "interpreted",
+      "runtimeFolder": "lua",
+      "sizeMB": "2.20",
+      "executable": "bin/lua",
+      "manifestUrl": "/api/runtime/lua?arch=aarch64"
+    },
+    "web": {
+      "target": "web",
+      "displayName": "Web (HTML / CSS / JS Server)",
+      "version": "3.14.6-1",
+      "category": "web_server",
+      "runtimeFolder": "python",
+      "sizeMB": "57.79",
+      "executable": "bin/python3",
+      "manifestUrl": "/api/runtime/web?arch=aarch64"
+    }
+  }
+}

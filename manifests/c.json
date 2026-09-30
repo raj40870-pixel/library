@@ -1,0 +1,36 @@
+{
+  "target": "c",
+  "displayName": "C (Clang / LLVM)",
+  "runtimeFolder": "c_cpp",
+  "version": "21.1.8-3",
+  "arch": "aarch64",
+  "category": "compiled",
+  "minAndroidApi": 24,
+  "fileCount": 8342,
+  "extractedSizeBytes": 552544009,
+  "extractedSizeMB": "526.95",
+  "symlinksCount": 118,
+  "primaryExecutable": "bin/clang",
+  "testCommand": "clang --version",
+  "compileCommand": "clang -Wall -O2 \"$FILE\" -o \"$OUTPUT\"",
+  "runCommand": "./\"$OUTPUT\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "libllvm",
+    "lld",
+    "binutils",
+    "libc++",
+    "ndk-sysroot",
+    "make"
+  ],
+  "downloadUrl": "/downloads/aarch64/c_cpp-21.1.8-3-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s c_cpp",
+  "description": "Modern Clang/LLVM C compiler with Android NDK sysroot, libc++, GNU binutils, and Make.",
+  "status": "stable",
+  "verified": true
+}

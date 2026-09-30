@@ -1,0 +1,13 @@
+prefix=/data/data/com.termux/files/usr
+exec_prefix=${prefix}
+libdir=/data/data/com.termux/files/usr/lib
+includedir=/data/data/com.termux/files/usr/include
+
+Name: sndfile
+Description: A library for reading and writing audio files
+Requires:
+Requires.private: flac ogg vorbis vorbisenc opus libmpg123
+Version: 1.2.2
+Libs: -L${libdir} -lsndfile
+Libs.private: -lmp3lame
+Cflags: -I${includedir}

@@ -1,0 +1,31 @@
+{
+  "target": "lua",
+  "displayName": "Lua 5.4",
+  "runtimeFolder": "lua",
+  "version": "5.4.8-10",
+  "arch": "aarch64",
+  "category": "interpreted",
+  "minAndroidApi": 24,
+  "fileCount": 22,
+  "extractedSizeBytes": 2304296,
+  "extractedSizeMB": "2.20",
+  "symlinksCount": 8,
+  "primaryExecutable": "bin/lua",
+  "testCommand": "lua -v",
+  "compileCommand": null,
+  "runCommand": "lua \"$FILE\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "readline"
+  ],
+  "downloadUrl": "/downloads/aarch64/lua-5.4.8-10-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s lua",
+  "description": "Lua 5.4 lightweight, embeddable scripting language interpreter.",
+  "status": "stable",
+  "verified": true
+}

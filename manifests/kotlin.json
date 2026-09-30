@@ -1,0 +1,31 @@
+{
+  "target": "kotlin",
+  "displayName": "Kotlin (Kotlinc)",
+  "runtimeFolder": "kotlin",
+  "version": "2.4.20",
+  "arch": "aarch64",
+  "category": "compiled_bytecode",
+  "minAndroidApi": 24,
+  "fileCount": 2373,
+  "extractedSizeBytes": 296934584,
+  "extractedSizeMB": "283.18",
+  "symlinksCount": 253,
+  "primaryExecutable": "bin/kotlinc",
+  "testCommand": "kotlinc -version",
+  "compileCommand": "kotlinc \"$FILE\" -include-runtime -d \"${FILE%.*}.jar\"",
+  "runCommand": "java -jar \"${FILE%.*}.jar\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "java"
+  ],
+  "downloadUrl": "/downloads/aarch64/kotlin-2.4.20-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s kotlin",
+  "description": "Kotlin compiler and standard runtime targeting JVM on ARM64 Android.",
+  "status": "stable",
+  "verified": true
+}

@@ -1,0 +1,40 @@
+{
+  "target": "php",
+  "displayName": "PHP (PHP-CLI)",
+  "runtimeFolder": "php",
+  "version": "8.5.1",
+  "arch": "aarch64",
+  "category": "interpreted",
+  "minAndroidApi": 24,
+  "fileCount": 1216,
+  "extractedSizeBytes": 267101101,
+  "extractedSizeMB": "254.73",
+  "symlinksCount": 83,
+  "primaryExecutable": "bin/php",
+  "testCommand": "php -v",
+  "compileCommand": null,
+  "runCommand": "php \"$FILE\"",
+  "environment": {
+    "PATH": "/data/data/com.termux/files/usr/bin:$PATH",
+    "LD_LIBRARY_PATH": "/data/data/com.termux/files/usr/lib",
+    "HOME": "/data/data/com.termux/files/home",
+    "TMPDIR": "/data/data/com.termux/files/usr/tmp"
+  },
+  "dependencies": [
+    "libandroid-support",
+    "libcurl",
+    "libiconv",
+    "libxml2",
+    "libxslt",
+    "libzip",
+    "oniguruma",
+    "openssl",
+    "pcre2",
+    "zlib"
+  ],
+  "downloadUrl": "/downloads/aarch64/php-8.5.1-aarch64.tar.gz",
+  "gitInstallCommand": "curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s php",
+  "description": "PHP command-line interpreter with cURL, OpenSSL, and XML modules for Android.",
+  "status": "stable",
+  "verified": true
+}

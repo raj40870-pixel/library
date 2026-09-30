@@ -1,0 +1,2 @@
+#!/data/data/com.termux/files/usr/bin/sh
+exec /data/data/com.termux/files/usr/bin/mono $MONO_OPTIONS /data/data/com.termux/files/usr/lib/mono/mono-configuration-crypto/4.5/mono-configuration-crypto.exe "$@"
