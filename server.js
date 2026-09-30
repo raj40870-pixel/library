@@ -203,8 +203,8 @@ const server = http.createServer((req, res) => {
       }
     }
 
-    // Dynamic streaming fallback from runtime folder
-    const folderMatch = pkg.split('-')[0];
+    // Dynamic streaming fallback from runtime folder (e.g. lua.tar.gz -> lua, python-3.14.tar.gz -> python)
+    const folderMatch = pkg.replace(/\.tar\..*$/, '').replace(/\.zip$/, '').split('-')[0];
     const srcFolder = path.join(ROOT_DIR, folderMatch);
 
     if (fs.existsSync(srcFolder) && fs.statSync(srcFolder).isDirectory()) {

@@ -46,40 +46,88 @@ echo "=========================================================="
 
 mkdir -p "$DEST/bin" "$DEST/lib" "$DEST/include"
 
-# Ensure git is installed for sparse checkout
-if ! command -v git >/dev/null 2>&1; then
-    echo "==> Installing git dependency..."
-    pkg install -y git 2>/dev/null || apt install -y git 2>/dev/null || true
+# Clear apt locks in case previous Termux apt session was interrupted
+rm -f "$DEST/var/lib/dpkg/lock"* "$DEST/var/lib/apt/lists/lock"* "$DEST/var/cache/apt/archives/lock"* 2>/dev/null || true
+
+INSTALLED=0
+DIST_SERVER="${TERMCODE_SERVER:-http://127.0.0.1:3000}"
+
+# Strategy 1: Direct stream from Distribution Server if accessible
+if [ -n "$DIST_SERVER" ]; then
+    echo "==> Checking TermCode Distribution Server (${DIST_SERVER})..."
+    if curl -s -f -m 3 "${DIST_SERVER}/health" >/dev/null 2>&1; then
+        echo "==> Streaming package directly from Distribution Server..."
+        if [ "$LANG_TARGET" = "all" ]; then
+            for d in c_cpp java python nodejs go rust kotlin csharp php ruby lua; do
+                echo "==> Downloading and extracting ${d}..."
+                curl -sL "${DIST_SERVER}/downloads/aarch64/${d}.tar.gz" | tar -xzf - -C "$DEST" 2>/dev/null || true
+            done
+            INSTALLED=1
+        else
+            if curl -sL "${DIST_SERVER}/downloads/aarch64/${LANG_TARGET}.tar.gz" | tar -xzf - -C "$DEST" 2>/dev/null; then
+                INSTALLED=1
+                echo "==> Package ${LANG_TARGET} deployed successfully from Distribution Server!"
+            fi
+        fi
+    fi
 fi
 
-TMP_DIR="/data/local/tmp/termcode_dl_$$"
-[ -d "/data/data/com.termux/files/home" ] && TMP_DIR="/data/data/com.termux/files/home/.cache/termcode_dl_$$"
-mkdir -p "$TMP_DIR"
-
-echo "==> Fetching package data from TermCode Library..."
-git clone --depth 1 --filter=blob:none --sparse https://github.com/raj40870-pixel/library.git "$TMP_DIR"
-cd "$TMP_DIR"
-
-ALL_DIRS="c_cpp java python nodejs go rust kotlin csharp php ruby lua"
-
-if [ "$LANG_TARGET" = "all" ]; then
-    echo "==> Installing ALL 11 toolchains at once..."
-    git sparse-checkout set $ALL_DIRS
-    for d in $ALL_DIRS; do
-        if [ -d "$TMP_DIR/$d" ]; then
-            echo "==> Deploying ${d}..."
-            cp -rf "$TMP_DIR/$d/"* "$DEST/" 2>/dev/null || true
-        fi
-    done
-else
-    git sparse-checkout set "$LANG_TARGET"
-    if [ ! -d "$TMP_DIR/$LANG_TARGET" ]; then
-        echo "==> ERROR: Language '${LANG_TARGET}' not found in repository!"
-        rm -rf "$TMP_DIR"
-        exit 1
+# Strategy 2: Git sparse-checkout from GitHub repository
+if [ "$INSTALLED" = "0" ]; then
+    if ! command -v git >/dev/null 2>&1; then
+        echo "==> Initializing environment dependencies..."
+        pkg install -y git 2>/dev/null || apt update -y 2>/dev/null && apt install -y --no-install-recommends git 2>/dev/null || true
     fi
-    echo "==> Deploying files for ${LANG_TARGET}..."
-    cp -rf "$TMP_DIR/$LANG_TARGET/"* "$DEST/" 2>/dev/null || true
+
+    if command -v git >/dev/null 2>&1; then
+        TMP_DIR="/data/local/tmp/termcode_dl_$$"
+        [ -d "/data/data/com.termux/files/home" ] && TMP_DIR="/data/data/com.termux/files/home/.cache/termcode_dl_$$"
+        mkdir -p "$TMP_DIR"
+
+        echo "==> Fetching package data from TermCode GitHub Repository..."
+        git clone --depth 1 --filter=blob:none --sparse https://github.com/raj40870-pixel/library.git "$TMP_DIR"
+        cd "$TMP_DIR"
+
+        ALL_DIRS="c_cpp java python nodejs go rust kotlin csharp php ruby lua"
+
+        if [ "$LANG_TARGET" = "all" ]; then
+            echo "==> Installing ALL 11 toolchains at once..."
+            git sparse-checkout set $ALL_DIRS
+            for d in $ALL_DIRS; do
+                if [ -d "$TMP_DIR/$d" ]; then
+                    echo "==> Deploying ${d}..."
+                    cp -rf "$TMP_DIR/$d/"* "$DEST/" 2>/dev/null || true
+                fi
+            done
+            INSTALLED=1
+        else
+            git sparse-checkout set "$LANG_TARGET"
+            if [ -d "$TMP_DIR/$LANG_TARGET" ]; then
+                echo "==> Deploying files for ${LANG_TARGET}..."
+                cp -rf "$TMP_DIR/$LANG_TARGET/"* "$DEST/" 2>/dev/null || true
+                INSTALLED=1
+            fi
+        fi
+        rm -rf "$TMP_DIR" 2>/dev/null || true
+    fi
+fi
+
+# Strategy 3: Direct repository tarball stream from GitHub codeload if git is unavailable
+if [ "$INSTALLED" = "0" ]; then
+    echo "==> Streaming package directly from GitHub archive..."
+    if [ "$LANG_TARGET" = "all" ]; then
+        curl -sL "https://codeload.github.com/raj40870-pixel/library/tar.gz/refs/heads/main" | tar -xzf - --strip-components=1 -C "$DEST" 2>/dev/null || true
+        INSTALLED=1
+    else
+        TMP_TAR_DIR="/data/local/tmp/termcode_tar_$$"
+        mkdir -p "$TMP_TAR_DIR"
+        curl -sL "https://codeload.github.com/raj40870-pixel/library/tar.gz/refs/heads/main" | tar -xzf - -C "$TMP_TAR_DIR" "library-main/${LANG_TARGET}" 2>/dev/null || true
+        if [ -d "$TMP_TAR_DIR/library-main/$LANG_TARGET" ]; then
+            cp -rf "$TMP_TAR_DIR/library-main/$LANG_TARGET/"* "$DEST/" 2>/dev/null || true
+            INSTALLED=1
+        fi
+        rm -rf "$TMP_TAR_DIR" 2>/dev/null || true
+    fi
 fi
 
 # Decompress any .gz files if present (e.g. libLLVM or modules)
