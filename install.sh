@@ -47,13 +47,46 @@ echo "=========================================================="
 mkdir -p "$DEST/bin" "$DEST/lib" "$DEST/include"
 
 # Clear apt locks in case previous Termux apt session was interrupted
-rm -f "$DEST/var/lib/dpkg/lock"* "$DEST/var/lib/apt/lists/lock"* "$DEST/var/cache/apt/archives/lock"* 2>/dev/null || true
-
 INSTALLED=0
 DIST_SERVER="${TERMCODE_SERVER:-http://127.0.0.1:3000}"
 
-# Strategy 1: Direct stream from Distribution Server if accessible
-if [ -n "$DIST_SERVER" ]; then
+# Strategy 1: Direct download from GitHub Releases CDN (Fastest, zero-config, global CDN)
+GITHUB_RELEASE_URL="https://github.com/raj40870-pixel/library/releases/download/v1.0.0"
+echo "==> Checking GitHub Releases CDN for ${LANG_TARGET}..."
+TMP_ZIP="/data/local/tmp/${LANG_TARGET}.zip"
+[ -d "/data/data/com.termux/files/home" ] && TMP_ZIP="/data/data/com.termux/files/home/.cache/${LANG_TARGET}.zip"
+mkdir -p "$(dirname "$TMP_ZIP")"
+
+if [ "$LANG_TARGET" = "all" ]; then
+    ALL_OK=1
+    for d in lua python ruby nodejs php csharp java c_cpp kotlin go rust; do
+        echo "==> Downloading ${d}.zip from GitHub Releases..."
+        d_zip="$(dirname "$TMP_ZIP")/${d}.zip"
+        if curl -sL -f --retry 2 --connect-timeout 8 "${GITHUB_RELEASE_URL}/${d}.zip" -o "$d_zip"; then
+            echo "==> Extracting ${d}..."
+            unzip -o -q "$d_zip" -d "$DEST" 2>/dev/null || busybox unzip -o -q "$d_zip" -d "$DEST" 2>/dev/null || true
+            rm -f "$d_zip" 2>/dev/null || true
+        else
+            ALL_OK=0
+            break
+        fi
+    done
+    if [ "$ALL_OK" = "1" ]; then
+        INSTALLED=1
+        echo "==> All 11 toolchains deployed successfully from GitHub Releases!"
+    fi
+else
+    if curl -sL -f --retry 2 --connect-timeout 8 "${GITHUB_RELEASE_URL}/${LANG_TARGET}.zip" -o "$TMP_ZIP"; then
+        echo "==> Extracting ${LANG_TARGET}..."
+        unzip -o -q "$TMP_ZIP" -d "$DEST" 2>/dev/null || busybox unzip -o -q "$TMP_ZIP" -d "$DEST" 2>/dev/null || true
+        rm -f "$TMP_ZIP" 2>/dev/null || true
+        INSTALLED=1
+        echo "==> Package ${LANG_TARGET} deployed successfully from GitHub Releases!"
+    fi
+fi
+
+# Strategy 2: Direct stream from Distribution Server if accessible
+if [ "$INSTALLED" = "0" ] && [ -n "$DIST_SERVER" ]; then
     echo "==> Checking TermCode Distribution Server (${DIST_SERVER})..."
     if curl -s -f -m 3 "${DIST_SERVER}/health" >/dev/null 2>&1; then
         echo "==> Streaming package directly from Distribution Server..."
