@@ -1,7 +1,7 @@
 # TermCode IDE - Multi-Language Compiler & Runtime Library 🚀
 ### *Official Standalone Toolchain & Runtime Distribution Platform for CodeEditor IDE on Android (`aarch64` / ARM64)*
 
-[![Release](https://img.shields.io/badge/Release-v1.3.0_Official_CDN-success?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raj40870-pixel/library/releases/tag/v1.3.0)
+[![Release](https://img.shields.io/badge/Release-v1.3.1_Official_CDN-success?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raj40870-pixel/library/releases/tag/v1.3.1)
 [![Official App](https://img.shields.io/badge/Android_App-CodeEditor_IDE-blue?style=for-the-badge&logo=android&logoColor=white)](https://github.com/raj40870-pixel/code-eidter-app)
 [![Official Website](https://img.shields.io/badge/Official_Website-Live_on_Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
 [![Architecture](https://img.shields.io/badge/Architecture-ARM64_%2F_aarch64-informational?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/raj40870-pixel/library)
@@ -13,7 +13,7 @@
 
 - 📱 **Official Android App Repository**: [raj40870-pixel/code-eidter-app](https://github.com/raj40870-pixel/code-eidter-app)
 - 🌐 **Official Web Portal & APK Download**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
-- 📦 **Latest Toolchain Release (v1.3.0)**: [GitHub Releases v1.3.0](https://github.com/raj40870-pixel/library/releases/tag/v1.3.0)
+- 📦 **Latest Toolchain Release (v1.3.1)**: [GitHub Releases v1.3.1](https://github.com/raj40870-pixel/library/releases/tag/v1.3.1)
 
 ---
 
@@ -21,7 +21,7 @@
 
 This repository powers the official compiler and runtime distribution system for **CodeEditor IDE (TermCode)** on Android (`aarch64`).
 
-All compiler toolchains and runtime environments are pre-built, optimized, and hosted directly on **GitHub Releases CDN ([v1.3.0](https://github.com/raj40870-pixel/library/releases/tag/v1.3.0))**. When a user runs code on their phone, the app automatically streams the verified package straight from GitHub Releases CDN into the sandboxed Linux userland (`/data/data/com.termux/files/usr/`) for high-speed, 100% native on-device compilation and execution.
+All compiler toolchains and runtime environments are pre-built, optimized, and hosted directly on **GitHub Releases CDN ([v1.3.1](https://github.com/raj40870-pixel/library/releases/tag/v1.3.1))**. When a user runs code on their phone, the app automatically streams the verified package straight from GitHub Releases CDN into the sandboxed Linux userland (`/data/data/com.termux/files/usr/`) for high-speed, 100% native on-device compilation and execution.
 
 ---
 
@@ -31,7 +31,7 @@ All compiler toolchains and runtime environments are pre-built, optimized, and h
 flowchart TD
     User([User Taps 'Run' in CodeEditor IDE]) --> CheckBin{Is Compiler Installed in /usr/bin?}
     CheckBin -- Yes --> RunCode[Execute Native Code in Sandboxed Linux Terminal]
-    CheckBin -- No --> CDNFetch[Download Standalone Package Directly from GitHub Releases CDN v1.3.0]
+    CheckBin -- No --> CDNFetch[Download Standalone Package Directly from GitHub Releases CDN v1.3.1]
     CDNFetch --> Progress[In-App Real-Time 0-100% Download Progress Dialog with HTTP Resume]
     Progress --> Extract[Extract Directly into /data/data/com.termux/files/usr/]
     Extract --> Perms[Set Executable Permissions & Restore Linker Symlinks]
@@ -40,23 +40,23 @@ flowchart TD
 
 ---
 
-## 🚀 Supported Languages & Standalone CDN Downloads (v1.3.0)
+## 🚀 Supported Languages & Standalone CDN Downloads (v1.3.1)
 
 All packages below are built for **Android `aarch64` (ARM64)** and hosted globally on **GitHub Releases CDN**:
 
-| Language / Stack | Included Tools & Runtimes | Version | Package (.zip) | Direct CDN Download (v1.3.0) | Download Size | Extracted Size | Verification Command |
+| Language / Stack | Included Tools & Runtimes | Version | Package (.zip) | Direct CDN Download (v1.3.1) | Download Size | Extracted Size | Verification Command |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Python 3** | Python 3, Pip, SQLite, OpenSSL | `3.14.6-1` | `python.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/python.zip) | 22.0 MB | 57.8 MB | `python3 --version` |
-| **C & C++** | Clang 21, Clang++, GCC, G++, Make, STL | `21.1.8-3` | `c_cpp.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/c_cpp.zip) | 207.0 MB | 526.9 MB | `clang --version && clang++ --version` |
-| **Java** | OpenJDK 21 HotSpot JVM, javac, java, jar | `21.0.12` | `java.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/java.zip) | 143.2 MB | 192.0 MB | `javac -version && java -version` |
-| **Node.js & TS** | Node.js V8 Runtime, NPM, TypeScript (`ts-node`) | `26.4.0-1` | `nodejs.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/nodejs.zip) | 73.1 MB | 197.8 MB | `node -v && npm -v` |
-| **Go (Golang)** | Go Compiler, Toolchain & Full Standard Library | `3:1.27.1` | `go.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/go.zip) | 269.7 MB | 741.1 MB | `go version` |
-| **Rust** | Rustc Compiler (LLVM backend), Cargo | `1.98.1-1` | `rust.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/rust.zip) | 283.0 MB | 1,226.1 MB | `rustc --version && cargo --version` |
-| **Kotlin** | Kotlinc JVM Compiler & Kotlin Runtime | `2.4.20` | `kotlin.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/kotlin.zip) | 228.1 MB | 283.2 MB | `kotlinc -version` |
-| **C# (.NET)** | Mono 6.14 Runtime, MCS C# Compiler | `6.14.1-2` | `csharp.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/csharp.zip) | 109.8 MB | 294.5 MB | `mcs --version && mono --version` |
-| **PHP** | PHP 8.5 CLI Interpreter & Modules | `8.5.1` | `php.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/php.zip) | 82.6 MB | 254.7 MB | `php -v` |
-| **Ruby** | Ruby 4.0 Interpreter, RubyGems, Bundler | `4.0.7` | `ruby.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/ruby.zip) | 28.0 MB | 71.1 MB | `ruby -v` |
-| **Lua** | Lua 5.4 Standalone Interpreter | `5.4.8-10` | `lua.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/lua.zip) | 1.0 MB | 2.2 MB | `lua -v` |
+| **Python 3** | Python 3, Pip, SQLite, OpenSSL | `3.14.6-1` | `python.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/python.zip) | 22.0 MB | 57.8 MB | `python3 --version` |
+| **C & C++** | Clang 21, Clang++, GCC, G++, Make, STL | `21.1.8-3` | `c_cpp.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/c_cpp.zip) | 207.0 MB | 526.9 MB | `clang --version && clang++ --version` |
+| **Java** | OpenJDK 21 HotSpot JVM, javac, java, jar | `21.0.12` | `java.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/java.zip) | 143.2 MB | 192.0 MB | `javac -version && java -version` |
+| **Node.js & TS** | Node.js V8 Runtime, NPM, TypeScript (`ts-node`) | `26.4.0-1` | `nodejs.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/nodejs.zip) | 73.1 MB | 197.8 MB | `node -v && npm -v` |
+| **Go (Golang)** | Go Compiler, Toolchain & Full Standard Library | `3:1.27.1` | `go.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/go.zip) | 269.7 MB | 741.1 MB | `go version` |
+| **Rust** | Rustc Compiler (LLVM backend), Cargo | `1.98.1-1` | `rust.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/rust.zip) | 283.0 MB | 1,226.1 MB | `rustc --version && cargo --version` |
+| **Kotlin** | Kotlinc JVM Compiler & Kotlin Runtime | `2.4.20` | `kotlin.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/kotlin.zip) | 228.1 MB | 283.2 MB | `kotlinc -version` |
+| **C# (.NET)** | Mono 6.14 Runtime, MCS C# Compiler | `6.14.1-2` | `csharp.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/csharp.zip) | 109.8 MB | 294.5 MB | `mcs --version && mono --version` |
+| **PHP** | PHP 8.5 CLI Interpreter & Modules | `8.5.1` | `php.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/php.zip) | 82.6 MB | 254.7 MB | `php -v` |
+| **Ruby** | Ruby 4.0 Interpreter, RubyGems, Bundler | `4.0.7` | `ruby.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/ruby.zip) | 28.0 MB | 71.1 MB | `ruby -v` |
+| **Lua** | Lua 5.4 Standalone Interpreter | `5.4.8-10` | `lua.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/lua.zip) | 1.0 MB | 2.2 MB | `lua -v` |
 
 ---
 
@@ -66,7 +66,7 @@ All packages below are built for **Android `aarch64` (ARM64)** and hosted global
 You do not need to install anything manually:
 1. Open any source code file (e.g. `main.py`, `main.cpp`, `Main.java`) in **CodeEditor IDE**.
 2. Tap the **RUN (▶️)** button.
-3. If the required compiler is missing, the IDE automatically pops up a **0%–100% download progress dialog**, downloads the package directly from GitHub Releases CDN (`v1.3.0`), extracts it, and executes your code immediately.
+3. If the required compiler is missing, the IDE automatically pops up a **0%–100% download progress dialog**, downloads the package directly from GitHub Releases CDN (`v1.3.1`), extracts it, and executes your code immediately.
 
 ---
 
