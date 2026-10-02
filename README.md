@@ -14,39 +14,37 @@
 - 📱 **Official Android App Repository**: [raj40870-pixel/code-eidter-app](https://github.com/raj40870-pixel/code-eidter-app)
 - 🌐 **Official Web Portal & APK Download**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
 - 📦 **Latest Toolchain Release (v1.3.0)**: [GitHub Releases v1.3.0](https://github.com/raj40870-pixel/library/releases/tag/v1.3.0)
-- 🛡️ **Full Audit & Verification Report**: [LIBRARY_AUDIT.md](LIBRARY_AUDIT.md)
 
 ---
 
 ## 🌟 Overview
 
-This repository hosts the official pre-built, optimized compiler toolchains and runtime environments for **CodeEditor IDE (TermCode)** on Android (`aarch64`).
+This repository powers the official compiler and runtime distribution system for **CodeEditor IDE (TermCode)** on Android (`aarch64`).
 
-Instead of relying on slow remote cloud servers or cumbersome manual installations, CodeEditor IDE delivers **direct native on-device compilation and execution**. Toolchains are distributed as high-speed standalone packages via GitHub Releases CDN (**v1.3.0**), pre-configured for instant extraction into the Termux sandboxed Linux userland (`/data/data/com.termux/files/usr/`).
+All compiler toolchains and runtime environments are pre-built, optimized, and hosted directly on **GitHub Releases CDN ([v1.3.0](https://github.com/raj40870-pixel/library/releases/tag/v1.3.0))**. When a user runs code on their phone, the app automatically streams the verified package straight from GitHub Releases CDN into the sandboxed Linux userland (`/data/data/com.termux/files/usr/`) for high-speed, 100% native on-device compilation and execution.
 
 ---
 
-## 🏛️ System Architecture & Delivery Flow
+## 🏛️ How It Works
 
 ```mermaid
 flowchart TD
-    User([User Taps 'Run' in App or Runs Terminal Command]) --> CheckBin{Is Compiler Installed in /usr/bin?}
-    CheckBin -- Yes --> RunCode[Execute Native Binary in Embedded Termux PTY]
-    CheckBin -- No --> CDNFetch[Stream Standalone Zip from GitHub Releases v1.3.0 CDN]
-    CDNFetch --> Progress[In-App Real-Time 0-100% Progress Bar with HTTP Resume]
-    Progress --> Extract[Extract Archive into /data/data/com.termux/files/usr/]
-    Extract --> Perms[Chmod 0755 on Binaries & Restore Linker Symlinks]
-    Perms --> Verify[Verify Toolchain via Native Version Command]
-    Verify --> RunCode
+    User([User Taps 'Run' in CodeEditor IDE]) --> CheckBin{Is Compiler Installed in /usr/bin?}
+    CheckBin -- Yes --> RunCode[Execute Native Code in Sandboxed Linux Terminal]
+    CheckBin -- No --> CDNFetch[Download Standalone Package Directly from GitHub Releases CDN v1.3.0]
+    CDNFetch --> Progress[In-App Real-Time 0-100% Download Progress Dialog with HTTP Resume]
+    Progress --> Extract[Extract Directly into /data/data/com.termux/files/usr/]
+    Extract --> Perms[Set Executable Permissions & Restore Linker Symlinks]
+    Perms --> RunCode
 ```
 
 ---
 
-## 🚀 Supported Programming Languages & CDN Downloads (v1.3.0)
+## 🚀 Supported Languages & Standalone CDN Downloads (v1.3.0)
 
-All packages below are compiled for **Android `aarch64` (ARM64)** and hosted globally on GitHub Releases CDN under tag **[`v1.3.0`](https://github.com/raj40870-pixel/library/releases/tag/v1.3.0)**:
+All packages below are built for **Android `aarch64` (ARM64)** and hosted globally on **GitHub Releases CDN**:
 
-| Language / Target | Included Tools & Runtimes | Version | Package (.zip) | Direct CDN Download (v1.3.0) | Download Size | Extracted Size | Verification Command |
+| Language / Stack | Included Tools & Runtimes | Version | Package (.zip) | Direct CDN Download (v1.3.0) | Download Size | Extracted Size | Verification Command |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
 | **Python 3** | Python 3, Pip, SQLite, OpenSSL | `3.14.6-1` | `python.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/python.zip) | 22.0 MB | 57.8 MB | `python3 --version` |
 | **C & C++** | Clang 21, Clang++, GCC, G++, Make, STL | `21.1.8-3` | `c_cpp.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/c_cpp.zip) | 207.0 MB | 526.9 MB | `clang --version && clang++ --version` |
@@ -62,18 +60,18 @@ All packages below are compiled for **Android `aarch64` (ARM64)** and hosted glo
 
 ---
 
-## ⚡ Installation Methods
+## ⚡ How Installation Works
 
-### Method 1: Automatic Zero-Config In-App Installation (Recommended)
-You do not need to install anything manually!
-1. Open any file (e.g. `main.py`, `main.cpp`, `Main.java`) in **CodeEditor IDE**.
+### 1. Automatic Zero-Config In-App Installation (Recommended)
+You do not need to install anything manually:
+1. Open any source code file (e.g. `main.py`, `main.cpp`, `Main.java`) in **CodeEditor IDE**.
 2. Tap the **RUN (▶️)** button.
-3. The IDE automatically detects if the required compiler is missing, opens a **0%–100% download progress dialog**, downloads the verified package directly from GitHub Releases CDN (`v1.3.0`), extracts it, and executes your code immediately.
+3. If the required compiler is missing, the IDE automatically pops up a **0%–100% download progress dialog**, downloads the package directly from GitHub Releases CDN (`v1.3.0`), extracts it, and executes your code immediately.
 
 ---
 
-### Method 2: Terminal Package Manager (`pkg install`)
-Inside the integrated CodeEditor / Termux terminal:
+### 2. Terminal Package Manager (`pkg install`)
+You can also install any package directly inside the app's integrated Linux terminal:
 
 ```bash
 # Install all 11 toolchains at once:
@@ -95,52 +93,7 @@ pkg install lua        # Lua 5.4 standalone interpreter
 
 ---
 
-### Method 3: 1-Line Universal Curl Installer
-Run any command below in the terminal:
-
-```bash
-# Master Installer (All 11 Languages)
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s all
-
-# Python 3
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s python
-
-# C & C++ (Clang / LLVM)
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s c_cpp
-
-# Java (OpenJDK 21)
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s java
-
-# Node.js & TypeScript
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s nodejs
-
-# Go
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s go
-
-# Rust
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s rust
-
-# Kotlin
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s kotlin
-
-# C# (.NET / Mono)
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s csharp
-
-# PHP
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s php
-
-# Ruby
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s ruby
-
-# Lua
-curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s lua
-```
-
----
-
 ## 🏃 Code Execution Quick Reference
-
-Once a compiler or runtime is installed, you can execute code either by tapping **RUN (▶️)** or directly in the terminal:
 
 | Language | Starter File | Compile Command | Run Command |
 | :--- | :--- | :--- | :--- |
@@ -161,57 +114,7 @@ Once a compiler or runtime is installed, you can execute code either by tapping 
 
 ---
 
-## 📂 Repository Layout
-
-```text
-library/
-├── .github/workflows/
-│   └── ci.yml                 # Automated validation workflow
-├── manifests/                 # JSON runtime metadata schemas
-│   ├── index.json             # Master language catalog
-│   ├── c.json                 # C Clang manifest
-│   ├── cpp.json               # C++ Clang++ manifest
-│   ├── java.json              # OpenJDK 21 manifest
-│   ├── python.json            # Python 3 manifest
-│   ├── nodejs.json            # Node.js manifest
-│   ├── typescript.json        # TypeScript manifest
-│   ├── go.json                # Golang manifest
-│   ├── rust.json              # Rustc & Cargo manifest
-│   ├── kotlin.json            # Kotlin manifest
-│   ├── csharp.json            # Mono C# manifest
-│   ├── php.json               # PHP CLI manifest
-│   ├── ruby.json              # Ruby manifest
-│   ├── lua.json               # Lua manifest
-│   └── web.json               # Web static server manifest
-├── licenses/
-│   ├── THIRD-PARTY-NOTICES.md # Open source third-party notices
-│   ├── Apache-2.0.txt         # Apache 2.0 License
-│   └── MIT.txt                # MIT License
-├── scripts/
-│   ├── audit-library.js       # Directory inventory and audit script
-│   ├── build-manifests.js     # Generates manifest JSON schemas
-│   ├── package-runtimes.js    # Packages runtimes into archives
-│   ├── validate-library.js    # Validates schemas and binary integrity
-│   └── test-server.js         # HTTP test suite
-├── c_cpp/                     # Extracted Clang/LLVM toolchain rootfs
-├── java/                      # Extracted OpenJDK 21 rootfs
-├── python/                    # Extracted Python 3.14 rootfs
-├── nodejs/                    # Extracted Node.js 26 rootfs
-├── go/                        # Extracted Go 1.27 rootfs
-├── rust/                      # Extracted Rust 1.98 rootfs
-├── kotlin/                    # Extracted Kotlin 2.4 rootfs
-├── csharp/                    # Extracted Mono 6.14 rootfs
-├── php/                       # Extracted PHP 8.5 rootfs
-├── ruby/                      # Extracted Ruby 4.0 rootfs
-├── lua/                       # Extracted Lua 5.4 rootfs
-├── install.sh                 # Universal client installation script
-├── LIBRARY_AUDIT.md           # Comprehensive inventory and verification audit
-└── README.md                  # Main documentation
-```
-
----
-
 ## ⚖️ License & Attribution
 
-- Distribution scripts and manifest metadata are licensed under the [Apache-2.0 License](licenses/Apache-2.0.txt).
+- Manifest specifications and configurations are licensed under the [Apache-2.0 License](licenses/Apache-2.0.txt).
 - All distributed binaries and toolchains are copyright of their respective upstream authors (LLVM, GNU, OpenJDK, Python Software Foundation, OpenJS, Google, Rust Project, JetBrains, Mono Project, PHP Group, Lua.org, Termux). See [licenses/THIRD-PARTY-NOTICES.md](licenses/THIRD-PARTY-NOTICES.md) for full notices.
