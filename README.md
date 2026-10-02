@@ -1,249 +1,174 @@
-# Code Editor - Runtime & Toolchain Distribution Server
+# TermCode IDE - Multi-Language Compiler & Runtime Library 🚀
+### *Official Standalone Toolchain & Runtime Distribution Platform for CodeEditor IDE on Android (`aarch64` / ARM64)*
 
-Official Toolchain & Runtime Distribution Platform for **Code Editor (TermCode IDE)** on Android (`aarch64` / Termux environment).
+[![Release](https://img.shields.io/badge/Release-v1.3.0_Official_CDN-success?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raj40870-pixel/library/releases/tag/v1.3.0)
+[![Official App](https://img.shields.io/badge/Android_App-CodeEditor_IDE-blue?style=for-the-badge&logo=android&logoColor=white)](https://github.com/raj40870-pixel/code-eidter-app)
+[![Official Website](https://img.shields.io/badge/Official_Website-Live_on_Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
+[![Architecture](https://img.shields.io/badge/Architecture-ARM64_%2F_aarch64-informational?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/raj40870-pixel/library)
+[![License](https://img.shields.io/badge/License-Apache_2.0-orange?style=for-the-badge)](licenses/Apache-2.0.txt)
 
 ---
 
-## 🏛️ System Architecture
+## 🌐 Ecosystem Quick Links
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                 Code Editor Android IDE Client              │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-                          HTTP │ GET /api/runtime/:language?arch=aarch64
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│             Code Editor Runtime Distribution Server         │
-│  - REST API Engine (Node.js Zero-Dependency Native Server)  │
-│  - Manifest Registry (Version, Arch, SHA-256, Environment)  │
-│  - Range-Enabled Streaming Archive Engine                   │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-                  Package Data │ .tar.gz / Git Sparse Checkout
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│               Android Target Execution Space                │
-│             /data/data/com.termux/files/usr/                │
-│  ├── bin/          (Chmod 0755 Executables, pkg, install)   │
-│  ├── lib/          (Dynamic Linker Shared Objects)          │
-│  ├── include/      (Standard Headers & C++ STL)             │
-│  └── SYMLINKS.txt  (Automatic Link Restoration)             │
-└─────────────────────────────────────────────────────────────┘
+- 📱 **Official Android App Repository**: [raj40870-pixel/code-eidter-app](https://github.com/raj40870-pixel/code-eidter-app)
+- 🌐 **Official Web Portal & APK Download**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
+- 📦 **Latest Toolchain Release (v1.3.0)**: [GitHub Releases v1.3.0](https://github.com/raj40870-pixel/library/releases/tag/v1.3.0)
+- 🛡️ **Full Audit & Verification Report**: [LIBRARY_AUDIT.md](LIBRARY_AUDIT.md)
+
+---
+
+## 🌟 Overview
+
+This repository hosts the official pre-built, optimized compiler toolchains and runtime environments for **CodeEditor IDE (TermCode)** on Android (`aarch64`).
+
+Instead of relying on slow remote cloud servers or cumbersome manual installations, CodeEditor IDE delivers **direct native on-device compilation and execution**. Toolchains are distributed as high-speed standalone packages via GitHub Releases CDN (**v1.3.0**), pre-configured for instant extraction into the Termux sandboxed Linux userland (`/data/data/com.termux/files/usr/`).
+
+---
+
+## 🏛️ System Architecture & Delivery Flow
+
+```mermaid
+flowchart TD
+    User([User Taps 'Run' in App or Runs Terminal Command]) --> CheckBin{Is Compiler Installed in /usr/bin?}
+    CheckBin -- Yes --> RunCode[Execute Native Binary in Embedded Termux PTY]
+    CheckBin -- No --> CDNFetch[Stream Standalone Zip from GitHub Releases v1.3.0 CDN]
+    CDNFetch --> Progress[In-App Real-Time 0-100% Progress Bar with HTTP Resume]
+    Progress --> Extract[Extract Archive into /data/data/com.termux/files/usr/]
+    Extract --> Perms[Chmod 0755 on Binaries & Restore Linker Symlinks]
+    Perms --> Verify[Verify Toolchain via Native Version Command]
+    Verify --> RunCode
 ```
 
 ---
 
-## 🚀 Supported Programming Languages & Toolchains
+## 🚀 Supported Programming Languages & CDN Downloads (v1.3.0)
 
-| Target | Display Name | Version | Compiler / Runtime | Test Command | Extracted Size |
-| :--- | :--- | :---: | :--- | :--- | :---: |
-| `c` | **C (Clang / LLVM)** | `21.1.8-3` | Clang Compiler | `clang --version` | 526.95 MB |
-| `cpp` | **C++ (Clang++ / LLVM)** | `21.1.8-3` | Clang++ Compiler | `clang++ --version` | 526.95 MB |
-| `java` | **Java (OpenJDK 21)** | `21.0.12` | OpenJDK HotSpot JVM | `java -version` | 192.02 MB |
-| `python` | **Python 3 (CPython)** | `3.14.6-1` | Python 3 Interpreter | `python3 --version` | 57.79 MB |
-| `nodejs` | **Node.js (JavaScript)** | `26.4.0-1` | Node.js V8 Runtime | `node -v` | 197.75 MB |
-| `typescript` | **TypeScript** | `26.4.0-1` | Node.js + ts-node | `node -v` | 197.75 MB |
-| `go` | **Go (Golang)** | `3:1.27.1` | Go Compiler & Stdlib | `go version` | 741.07 MB |
-| `rust` | **Rust (Rustc & Cargo)** | `1.98.1-1` | Rustc & Cargo | `rustc --version` | 1,226.07 MB |
-| `kotlin` | **Kotlin (Kotlinc)** | `2.4.20` | Kotlin JVM Compiler | `kotlinc -version` | 283.18 MB |
-| `csharp` | **C# (Mono & MCS)** | `6.14.1-2` | Mono Runtime & MCS | `mcs --version` | 294.52 MB |
-| `php` | **PHP (PHP-CLI)** | `8.5.1` | PHP CLI Interpreter | `php -v` | 254.73 MB |
-| `ruby` | **Ruby (Ruby & Gem)** | `4.0.7` | Ruby Interpreter | `ruby -v` | 71.12 MB |
-| `lua` | **Lua 5.4** | `5.4.8-10` | Lua Interpreter | `lua -v` | 2.20 MB |
-| `web` | **Web Application Server** | `3.14.6-1` | Python HTTP Server | `python3 -m http.server 8080` | 57.79 MB |
+All packages below are compiled for **Android `aarch64` (ARM64)** and hosted globally on GitHub Releases CDN under tag **[`v1.3.0`](https://github.com/raj40870-pixel/library/releases/tag/v1.3.0)**:
+
+| Language / Target | Included Tools & Runtimes | Version | Package (.zip) | Direct CDN Download (v1.3.0) | Download Size | Extracted Size | Verification Command |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Python 3** | Python 3, Pip, SQLite, OpenSSL | `3.14.6-1` | `python.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/python.zip) | 22.0 MB | 57.8 MB | `python3 --version` |
+| **C & C++** | Clang 21, Clang++, GCC, G++, Make, STL | `21.1.8-3` | `c_cpp.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/c_cpp.zip) | 207.0 MB | 526.9 MB | `clang --version && clang++ --version` |
+| **Java** | OpenJDK 21 HotSpot JVM, javac, java, jar | `21.0.12` | `java.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/java.zip) | 143.2 MB | 192.0 MB | `javac -version && java -version` |
+| **Node.js & TS** | Node.js V8 Runtime, NPM, TypeScript (`ts-node`) | `26.4.0-1` | `nodejs.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/nodejs.zip) | 73.1 MB | 197.8 MB | `node -v && npm -v` |
+| **Go (Golang)** | Go Compiler, Toolchain & Full Standard Library | `3:1.27.1` | `go.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/go.zip) | 269.7 MB | 741.1 MB | `go version` |
+| **Rust** | Rustc Compiler (LLVM backend), Cargo | `1.98.1-1` | `rust.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/rust.zip) | 283.0 MB | 1,226.1 MB | `rustc --version && cargo --version` |
+| **Kotlin** | Kotlinc JVM Compiler & Kotlin Runtime | `2.4.20` | `kotlin.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/kotlin.zip) | 228.1 MB | 283.2 MB | `kotlinc -version` |
+| **C# (.NET)** | Mono 6.14 Runtime, MCS C# Compiler | `6.14.1-2` | `csharp.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/csharp.zip) | 109.8 MB | 294.5 MB | `mcs --version && mono --version` |
+| **PHP** | PHP 8.5 CLI Interpreter & Modules | `8.5.1` | `php.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/php.zip) | 82.6 MB | 254.7 MB | `php -v` |
+| **Ruby** | Ruby 4.0 Interpreter, RubyGems, Bundler | `4.0.7` | `ruby.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/ruby.zip) | 28.0 MB | 71.1 MB | `ruby -v` |
+| **Lua** | Lua 5.4 Standalone Interpreter | `5.4.8-10` | `lua.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.0/lua.zip) | 1.0 MB | 2.2 MB | `lua -v` |
 
 ---
 
-## ⚡ 1. Native Terminal Package Manager (`pkg install`)
+## ⚡ Installation Methods
 
-In the Code Editor / Termux integrated terminal, install any toolchain using the native package manager:
+### Method 1: Automatic Zero-Config In-App Installation (Recommended)
+You do not need to install anything manually!
+1. Open any file (e.g. `main.py`, `main.cpp`, `Main.java`) in **CodeEditor IDE**.
+2. Tap the **RUN (▶️)** button.
+3. The IDE automatically detects if the required compiler is missing, opens a **0%–100% download progress dialog**, downloads the verified package directly from GitHub Releases CDN (`v1.3.0`), extracts it, and executes your code immediately.
+
+---
+
+### Method 2: Terminal Package Manager (`pkg install`)
+Inside the integrated CodeEditor / Termux terminal:
 
 ```bash
 # Install all 11 toolchains at once:
 pkg install all
 
-# Install specific languages:
-pkg install nodejs     # Node.js 26, NPM, TypeScript
-pkg install python     # Python 3.14, Pip, SQLite, OpenSSL
-pkg install clang      # C & C++ Clang 21, Clang++, GCC, G++, Make
+# Or install individual toolchains:
+pkg install python     # Python 3.14 + Pip + SQLite
+pkg install clang      # C & C++ Clang 21, GCC, G++, Make
 pkg install java       # OpenJDK 21, javac, java, jar
+pkg install nodejs     # Node.js 26, NPM, TypeScript
 pkg install go         # Golang 1.27 compiler & stdlib
 pkg install rust       # Rustc 1.98 compiler, Cargo
 pkg install kotlin     # Kotlin 2.4 JVM compiler & kotlinc
 pkg install csharp     # Mono 6.14 C# runtime & MCS compiler
-pkg install php        # PHP 8.5 command-line interpreter
+pkg install php        # PHP 8.5 CLI interpreter
 pkg install ruby       # Ruby 4.0 interpreter & RubyGems
 pkg install lua        # Lua 5.4 standalone interpreter
 ```
 
-### Authentic Interactive Termux Confirmation:
-```text
-$ pkg install nodejs
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-The following NEW packages will be installed:
-  nodejs (Node.js 26.4.0 JavaScript Runtime)
-0 upgraded, 1 newly installed, 0 to remove.
-Need to get 71.8 MB of archives.
-After this operation, 197.8 MB of additional disk space will be used.
-Do you want to continue? [Y/n] y
-Get:1 https://raw.githubusercontent.com/raj40870-pixel/library/main/ aarch64 nodejs [71.8 MB]
-==> Fetching package data from TermCode Library...
-==> Deploying files for nodejs...
-==> Restoring dynamic linker symlinks...
-Setting up nodejs ...
-Processing triggers for TermCode runtime environment ...
-Done.
-```
-
-*(Pass `-y` for non-interactive installs: `pkg install -y python`)*
-
 ---
 
-## 🚀 2. 1-Line Universal Installation via Curl
+### Method 3: 1-Line Universal Curl Installer
+Run any command below in the terminal:
 
-Run any command below in the Code Editor / Termux terminal:
-
-### 🌟 All Languages (Complete Master Toolchain)
 ```bash
+# Master Installer (All 11 Languages)
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s all
-```
 
-### Python (Python 3.14 + Pip + SQLite + OpenSSL)
-```bash
+# Python 3
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s python
-```
 
-### C & C++ (Clang 21, Clang++, GCC, G++, Libc++, Make)
-```bash
+# C & C++ (Clang / LLVM)
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s c_cpp
-```
 
-### Java (OpenJDK 21, JVM, javac, java, jar)
-```bash
+# Java (OpenJDK 21)
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s java
-```
 
-### Node.js (Node.js 26, NPM, TypeScript)
-```bash
+# Node.js & TypeScript
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s nodejs
-```
 
-### Go (Golang 1.27 compiler & stdlib)
-```bash
+# Go
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s go
-```
 
-### Rust (Rustc 1.98 compiler, Cargo package manager)
-```bash
+# Rust
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s rust
-```
 
-### Kotlin (Kotlin 2.4 compiler - kotlinc & runtime)
-```bash
+# Kotlin
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s kotlin
-```
 
-### C# (Mono 6.14 C# runtime, MCS compiler)
-```bash
+# C# (.NET / Mono)
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s csharp
-```
 
-### PHP (PHP 8.5 CLI interpreter)
-```bash
+# PHP
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s php
-```
 
-### Ruby (Ruby 4.0 interpreter, Gem, Bundle)
-```bash
+# Ruby
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s ruby
-```
 
-### Lua (Lua 5.4 standalone interpreter)
-```bash
+# Lua
 curl -sL https://raw.githubusercontent.com/raj40870-pixel/library/main/install.sh | sh -s lua
 ```
 
 ---
 
-## 🏃 3. Code Execution Reference (Same as Termux)
+## 🏃 Code Execution Quick Reference
 
-Once installed, execute code directly in the terminal or click the **RUN (▶️)** button in Code Editor:
+Once a compiler or runtime is installed, you can execute code either by tapping **RUN (▶️)** or directly in the terminal:
 
-| Language | Compile Command | Run Command |
-| :--- | :--- | :--- |
-| **Python** | *None (Interpreted)* | `python3 main.py` |
-| **C** | `clang -Wall -O2 main.c -o main` | `./main` |
-| **C++** | `clang++ -std=c++17 -Wall -O2 main.cpp -o main` | `./main` |
-| **Java** | `javac Main.java` | `java Main` |
-| **JavaScript** | *None (Interpreted)* | `node index.js` |
-| **TypeScript** | `npx tsc file.ts` | `npx ts-node file.ts` |
-| **Go** | `go build -o app main.go` | `go run main.go` |
-| **Rust** | `rustc main.rs -o main` | `./main` |
-| **Kotlin** | `kotlinc main.kt -include-runtime -d main.jar` | `java -jar main.jar` |
-| **C#** | `mcs main.cs -out:main.exe` | `mono main.exe` |
-| **PHP** | *None (Interpreted)* | `php script.php` |
-| **Ruby** | *None (Interpreted)* | `ruby app.rb` |
-| **Lua** | *None (Interpreted)* | `lua script.lua` |
-| **Web Server** | *None* | `python3 -m http.server 8080` |
-
----
-
-## 🌐 4. Running the Local Distribution Server
-
-The server uses Node.js native standard library with **zero external dependencies** (0 KB download required):
-
-```bash
-# Start server (default port 3000)
-node server.js
-
-# Custom port
-PORT=8080 node server.js
-```
-
-### REST API Endpoints Overview
-
-- `GET /` - Root discovery & service catalog
-- `GET /health` - System health, memory, and uptime telemetry
-- `GET /api/runtimes` - Index of all registered language targets
-- `GET /api/runtime/:language?arch=aarch64` - Manifest for a specific language
-- `GET /downloads/:arch/:package` - Stream package tarball archive with range support
-- `GET /checksums/:arch.sha256` - Raw SHA-256 integrity hash file
-- `GET /install.sh` - Universal terminal installation script
+| Language | Starter File | Compile Command | Run Command |
+| :--- | :--- | :--- | :--- |
+| **Python** | `main.py` | *(Interpreted)* | `python3 -u main.py` |
+| **C** | `main.c` | `clang -Wall -O2 main.c -o main` | `./main` |
+| **C++** | `main.cpp` | `clang++ -std=c++17 -Wall -O2 main.cpp -o main` | `./main` |
+| **Java** | `Main.java` | `javac Main.java` | `java Main` |
+| **JavaScript** | `main.js` | *(Interpreted)* | `node main.js` |
+| **TypeScript** | `main.ts` | `npx tsc main.ts` | `npx ts-node main.ts` |
+| **Go** | `main.go` | `go build -o app main.go` | `go run main.go` |
+| **Rust** | `main.rs` | `rustc main.rs -o main` | `./main` |
+| **Kotlin** | `Main.kt` | `kotlinc Main.kt -include-runtime -d Main.jar` | `java -jar Main.jar` |
+| **C#** | `Program.cs` | `mcs Program.cs -out:Program.exe` | `mono Program.exe` |
+| **PHP** | `index.php` | *(Interpreted)* | `php index.php` |
+| **Ruby** | `main.rb` | *(Interpreted)* | `ruby main.rb` |
+| **Lua** | `main.lua` | *(Interpreted)* | `lua main.lua` |
+| **HTML / Web**| `index.html`| *(Background HTTP Server)* | `python3 -m http.server 8080` *(In-App Web Preview)* |
 
 ---
 
-## 📱 5. Android Client Integration (Kotlin / Java)
-
-When a user in **Code Editor** executes code:
-
-1. **Check Local Binary**:
-   Check if `/data/data/com.termux/files/usr/bin/<executable>` exists and has executable permissions.
-2. **Fetch Manifest**:
-   If missing, send HTTP GET to `https://<server>/api/runtime/<target>?arch=aarch64`.
-3. **Download Package**:
-   Stream package from `downloadUrl` with progress notification.
-4. **Extract & Restore Symlinks**:
-   Extract archive to `/data/data/com.termux/files/usr/`, chmod `0755` on `bin/`, and execute `SYMLINKS.txt` commands.
-5. **Verify Version**:
-   Execute `testCommand` inside the terminal environment.
-6. **Run Code**:
-   Execute user code via `runCommand` or `compileCommand`.
-
----
-
-## 📂 6. Repository Layout
+## 📂 Repository Layout
 
 ```text
 library/
 ├── .github/workflows/
 │   └── ci.yml                 # Automated validation workflow
-├── checksums/
-│   └── aarch64.sha256         # Master SHA-256 package checksums
-├── manifests/
-│   ├── index.json             # Global runtime catalog
+├── manifests/                 # JSON runtime metadata schemas
+│   ├── index.json             # Master language catalog
 │   ├── c.json                 # C Clang manifest
 │   ├── cpp.json               # C++ Clang++ manifest
 │   ├── java.json              # OpenJDK 21 manifest
@@ -259,34 +184,28 @@ library/
 │   ├── lua.json               # Lua manifest
 │   └── web.json               # Web static server manifest
 ├── licenses/
-│   ├── THIRD-PARTY-NOTICES.md # Open source notices
-│   ├── Apache-2.0.txt
-│   └── MIT.txt
+│   ├── THIRD-PARTY-NOTICES.md # Open source third-party notices
+│   ├── Apache-2.0.txt         # Apache 2.0 License
+│   └── MIT.txt                # MIT License
 ├── scripts/
-│   ├── audit-library.js       # Deep directory audit & inventory
+│   ├── audit-library.js       # Directory inventory and audit script
 │   ├── build-manifests.js     # Generates manifest JSON schemas
-│   ├── package-runtimes.js    # Packages runtimes into tarballs
-│   ├── validate-library.js    # Validates schemas & executables
-│   └── test-server.js         # Automated HTTP test suite
-├── c_cpp/                     # Extracted Clang/LLVM toolchain
-├── java/                      # Extracted OpenJDK 21
-├── python/                    # Extracted Python 3.14
-├── nodejs/                    # Extracted Node.js 26
-├── go/                        # Extracted Go 1.27
-├── rust/                      # Extracted Rust 1.98
-├── kotlin/                    # Extracted Kotlin 2.4
-├── csharp/                    # Extracted Mono 6.14
-├── php/                       # Extracted PHP 8.5
-├── ruby/                      # Extracted Ruby 4.0
-├── lua/                       # Extracted Lua 5.4
-├── server.js                  # Zero-dependency Node.js HTTP server
-├── package.json               # Project manifest
-├── Dockerfile                 # Container image specification
-├── .dockerignore              # Container exclusions
-├── .gitignore                 # Git ignore specification
-├── install.sh                 # Universal Termux client installer
-├── API.md                     # Full REST API specification
-├── LIBRARY_AUDIT.md           # Complete system audit report
+│   ├── package-runtimes.js    # Packages runtimes into archives
+│   ├── validate-library.js    # Validates schemas and binary integrity
+│   └── test-server.js         # HTTP test suite
+├── c_cpp/                     # Extracted Clang/LLVM toolchain rootfs
+├── java/                      # Extracted OpenJDK 21 rootfs
+├── python/                    # Extracted Python 3.14 rootfs
+├── nodejs/                    # Extracted Node.js 26 rootfs
+├── go/                        # Extracted Go 1.27 rootfs
+├── rust/                      # Extracted Rust 1.98 rootfs
+├── kotlin/                    # Extracted Kotlin 2.4 rootfs
+├── csharp/                    # Extracted Mono 6.14 rootfs
+├── php/                       # Extracted PHP 8.5 rootfs
+├── ruby/                      # Extracted Ruby 4.0 rootfs
+├── lua/                       # Extracted Lua 5.4 rootfs
+├── install.sh                 # Universal client installation script
+├── LIBRARY_AUDIT.md           # Comprehensive inventory and verification audit
 └── README.md                  # Main documentation
 ```
 
@@ -294,5 +213,5 @@ library/
 
 ## ⚖️ License & Attribution
 
-- Server code and manifest specifications are licensed under the [Apache-2.0 License](licenses/Apache-2.0.txt).
+- Distribution scripts and manifest metadata are licensed under the [Apache-2.0 License](licenses/Apache-2.0.txt).
 - All distributed binaries and toolchains are copyright of their respective upstream authors (LLVM, GNU, OpenJDK, Python Software Foundation, OpenJS, Google, Rust Project, JetBrains, Mono Project, PHP Group, Lua.org, Termux). See [licenses/THIRD-PARTY-NOTICES.md](licenses/THIRD-PARTY-NOTICES.md) for full notices.
