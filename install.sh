@@ -51,7 +51,7 @@ INSTALLED=0
 DIST_SERVER="${TERMCODE_SERVER:-http://127.0.0.1:3000}"
 
 # Strategy 1: Direct download from GitHub Releases CDN (Fastest, zero-config, global CDN)
-GITHUB_RELEASE_URL="https://github.com/raj40870-pixel/library/releases/download/v1.0.0"
+GITHUB_RELEASE_URL="https://github.com/raj40870-pixel/library/releases/download/v1.3.0"
 echo "==> Checking GitHub Releases CDN for ${LANG_TARGET}..."
 TMP_ZIP="/data/local/tmp/${LANG_TARGET}.zip"
 [ -d "/data/data/com.termux/files/home" ] && TMP_ZIP="/data/data/com.termux/files/home/.cache/${LANG_TARGET}.zip"
