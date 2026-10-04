@@ -1,7 +1,7 @@
 # TermCode IDE - Multi-Language Compiler & Runtime Library 🚀
 ### *Official Standalone Toolchain & Runtime Distribution Platform for CodeEditor IDE on Android (`aarch64` / ARM64)*
 
-[![Release](https://img.shields.io/badge/Release-v1.3.1_Official_CDN-success?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raj40870-pixel/library/releases/tag/v1.3.1)
+[![Compiler CDN](https://img.shields.io/badge/Compiler_Library-Official_CDN-purple?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raj40870-pixel/library/releases)
 [![CodeEditor IDE](https://img.shields.io/badge/CodeEditor_IDE-v1.3.4_Compatible-blue?style=for-the-badge&logo=android&logoColor=white)](https://github.com/raj40870-pixel/code-eidter-app)
 [![Official Website](https://img.shields.io/badge/Official_Website-Live_on_Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
 [![Architecture](https://img.shields.io/badge/Architecture-ARM64_%2F_aarch64-informational?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/raj40870-pixel/library)
@@ -13,7 +13,7 @@
 
 - 📱 **Official Android App (v1.3.4)**: [raj40870-pixel/code-eidter-app](https://github.com/raj40870-pixel/code-eidter-app)
 - 🌐 **Official Web Portal & APK Download**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
-- 📦 **Latest Toolchain Release (CDN)**: [GitHub Releases v1.3.1](https://github.com/raj40870-pixel/library/releases/tag/v1.3.1)
+- 📦 **Latest Toolchain Release (CDN)**: [Official Toolchains CDN](https://github.com/raj40870-pixel/library/releases)
 
 ---
 
@@ -21,7 +21,7 @@
 
 This repository powers the official compiler and runtime distribution system for **CodeEditor IDE (TermCode)** on Android (`aarch64`).
 
-All compiler toolchains and runtime environments are pre-built, optimized, and hosted directly on **GitHub Releases CDN ([v1.3.1](https://github.com/raj40870-pixel/library/releases/tag/v1.3.1))**. When a user runs code on their phone, the app automatically streams the verified package straight from GitHub Releases CDN into the sandboxed Linux userland (`/data/data/com.termux/files/usr/`) for high-speed, 100% native on-device compilation and execution.
+All compiler toolchains and runtime environments are pre-built, optimized, and hosted directly on **GitHub Releases CDN ([Official Toolchains](https://github.com/raj40870-pixel/library/releases))**. When a user runs code on their phone, the app automatically streams the verified package straight from GitHub Releases CDN into the sandboxed Linux userland (`/data/data/com.termux/files/usr/`) for high-speed, 100% native on-device compilation and execution.
 
 ---
 
@@ -31,7 +31,7 @@ All compiler toolchains and runtime environments are pre-built, optimized, and h
 flowchart TD
     User([User Taps 'Run' in CodeEditor IDE]) --> CheckBin{Is Compiler Installed in /usr/bin?}
     CheckBin -- Yes --> RunCode[Execute Native Code in Sandboxed Linux Terminal]
-    CheckBin -- No --> CDNFetch[Download Standalone Package Directly from GitHub Releases CDN v1.3.1]
+    CheckBin -- No --> CDNFetch[Download Standalone Package Directly from Official GitHub Releases CDN]
     CDNFetch --> Progress[In-App Real-Time 0-100% Download Progress Dialog with HTTP Resume]
     Progress --> Extract[Extract Directly into /data/data/com.termux/files/usr/]
     Extract --> Perms[Set Executable Permissions & Restore Linker Symlinks]
@@ -40,11 +40,11 @@ flowchart TD
 
 ---
 
-## 🚀 Supported Languages & Standalone CDN Downloads (v1.3.1)
+## 🚀 Supported Languages & Standalone CDN Downloads
 
 All packages below are built for **Android `aarch64` (ARM64)** and hosted globally on **GitHub Releases CDN**:
 
-| Language / Stack | Included Tools & Runtimes | Version | Package (.zip) | Direct CDN Download (v1.3.1) | Download Size | Extracted Size | Verification Command |
+| Language / Stack | Included Tools & Runtimes | Version | Package (.zip) | Direct CDN Download | Download Size | Extracted Size | Verification Command |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
 | **Python 3** | Python 3, Pip, SQLite, OpenSSL | `3.14.6-1` | `python.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/python.zip) | 22.0 MB | 57.8 MB | `python3 --version` |
 | **C & C++** | Clang 21, Clang++, GCC, G++, Make, STL | `21.1.8-3` | `c_cpp.zip` | [Download](https://github.com/raj40870-pixel/library/releases/download/v1.3.1/c_cpp.zip) | 207.0 MB | 526.9 MB | `clang --version && clang++ --version` |
@@ -66,7 +66,7 @@ All packages below are built for **Android `aarch64` (ARM64)** and hosted global
 You do not need to install anything manually:
 1. Open any source code file (e.g. `main.py`, `main.cpp`, `Main.java`) in **CodeEditor IDE**.
 2. Tap the **RUN (▶️)** button.
-3. If the required compiler is missing, the IDE automatically pops up a **0%–100% download progress dialog**, downloads the package directly from GitHub Releases CDN (`v1.3.1`), extracts it, and executes your code immediately.
+3. If the required compiler is missing, the IDE automatically pops up a **0%–100% download progress dialog**, downloads the package directly from GitHub Releases CDN, extracts it, and executes your code immediately.
 
 ---
 
