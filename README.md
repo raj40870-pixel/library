@@ -11,7 +11,7 @@
 
 ## 🌐 Ecosystem Quick Links
 
-- 📱 **Official Android App (v1.4.0)**: [raj40870-pixel/code-eidter-app](https://github.com/raj40870-pixel/code-eidter-app)
+- 📱 **Official Android App (v1.4.0, versionCode 19)**: [raj40870-pixel/code-eidter-app](https://github.com/raj40870-pixel/code-eidter-app)
 - 🌐 **Official Web Portal & APK Download**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
 - 📦 **Latest Toolchain Release (CDN)**: [Official Toolchains CDN](https://github.com/raj40870-pixel/library/releases)
 
