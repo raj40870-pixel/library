@@ -2,7 +2,7 @@
 ### *Official Standalone Toolchain & Runtime Distribution Platform for CodeEditor IDE on Android (`aarch64` / ARM64)*
 
 [![Compiler CDN](https://img.shields.io/badge/Compiler_Library-Official_CDN-purple?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raj40870-pixel/library/releases)
-[![CodeEditor IDE](https://img.shields.io/badge/CodeEditor_IDE-v1.3.9_Compatible-blue?style=for-the-badge&logo=android&logoColor=white)](https://github.com/raj40870-pixel/code-eidter-app)
+[![CodeEditor IDE](https://img.shields.io/badge/CodeEditor_IDE-v1.3.8_Compatible-blue?style=for-the-badge&logo=android&logoColor=white)](https://github.com/raj40870-pixel/code-eidter-app)
 [![Official Website](https://img.shields.io/badge/Official_Website-Live_on_Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
 [![Architecture](https://img.shields.io/badge/Architecture-ARM64_%2F_aarch64-informational?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/raj40870-pixel/library)
 [![License](https://img.shields.io/badge/License-Apache_2.0-orange?style=for-the-badge)](licenses/Apache-2.0.txt)
@@ -11,7 +11,7 @@
 
 ## 🌐 Ecosystem Quick Links
 
-- 📱 **Official Android App (v1.3.9, versionCode 21, target SDK 37)**: [raj40870-pixel/code-eidter-app](https://github.com/raj40870-pixel/code-eidter-app)
+- 📱 **Latest Downloadable Android APK (v1.3.8, versionCode 15, target SDK 34, package `com.termux`)**: [Download from the official portal](https://code-eidter-apk-website.vercel.app/apk/CodeEditor-v1.3.8.apk). This legacy package may not update builds with a different application ID.
 - 🌐 **Official Web Portal & APK Download**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
 - 📦 **Latest Toolchain Release (CDN)**: [Official Toolchains CDN](https://github.com/raj40870-pixel/library/releases)
 
@@ -21,7 +21,7 @@
 
 This repository powers the official compiler and runtime distribution system for **CodeEditor IDE (TermCode)** on Android (`aarch64`).
 
-All compiler toolchains and runtime environments are pre-built, optimized, and hosted directly on **GitHub Releases CDN ([Official Toolchains](https://github.com/raj40870-pixel/library/releases))**. When a user runs code on their phone, the app automatically streams the verified package straight from GitHub Releases CDN into the sandboxed Linux userland (`/data/data/com.rajkumar.codereditor/files/usr/`) for high-speed, 100% native on-device compilation and execution.
+All compiler toolchains and runtime environments are pre-built, optimized, and hosted directly on **GitHub Releases CDN ([Official Toolchains](https://github.com/raj40870-pixel/library/releases))**. When a user runs code on their phone, the app automatically streams the verified package straight from GitHub Releases CDN into the sandboxed Linux userland (`/data/data/com.termux/files/usr/`) for high-speed, 100% native on-device compilation and execution.
 
 ---
 
@@ -33,7 +33,7 @@ flowchart TD
     CheckBin -- Yes --> RunCode[Execute Native Code in Sandboxed Linux Terminal]
     CheckBin -- No --> CDNFetch[Download Standalone Package Directly from Official GitHub Releases CDN]
     CDNFetch --> Progress[In-App Real-Time 0-100% Download Progress Dialog with HTTP Resume]
-    Progress --> Extract[Extract Directly into /data/data/com.rajkumar.codereditor/files/usr/]
+    Progress --> Extract[Extract Directly into /data/data/com.termux/files/usr/]
     Extract --> Perms[Set Executable Permissions & Restore Linker Symlinks]
     Perms --> RunCode
 ```
