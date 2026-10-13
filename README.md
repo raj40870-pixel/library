@@ -11,7 +11,7 @@
 
 ## 🌐 Ecosystem Quick Links
 
-- 📱 **Latest Downloadable Android APK (v1.3.9, versionCode 23, target SDK 37, package `com.rajkumar.codereditor`)**: [Download from the official portal](https://code-eidter-apk-website.vercel.app/apk/CodeEditor-v1.3.9.apk).
+- 📱 **Latest Downloadable Android APK (v1.3.9, versionCode 24, target SDK 37, package `com.rajkumar.codereditor`)**: [Download from the official portal](https://code-eidter-apk-website.vercel.app/apk/CodeEditor-v1.3.9.apk).
 - 🌐 **Official Web Portal & APK Download**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
 - 📦 **Latest Toolchain Release (CDN)**: [Official Toolchains CDN](https://github.com/raj40870-pixel/library/releases)
 
