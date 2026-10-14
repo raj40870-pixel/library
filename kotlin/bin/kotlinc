@@ -32,14 +32,25 @@ findJavaVersion() {
     done <<< $("${JAVACMD:=java}" -version 2>&1)
 }
 
-KOTLIN_HOME="$(findKotlinHome)"
+[ -n "$KOTLIN_HOME" ] || KOTLIN_HOME="$(findKotlinHome)"
+if [ ! -f "$KOTLIN_HOME/lib/kotlin-compiler.jar" ]; then
+    if [ -d "$KOTLIN_HOME/opt/kotlin/lib" ]; then
+        KOTLIN_HOME="$KOTLIN_HOME/opt/kotlin"
+    elif [ -d "/usr/opt/kotlin/lib" ]; then
+        KOTLIN_HOME="/usr/opt/kotlin"
+    elif [ -d "$PREFIX/opt/kotlin/lib" ]; then
+        KOTLIN_HOME="$PREFIX/opt/kotlin"
+    elif [ -d "/data/data/com.termux/files/usr/opt/kotlin/lib" ]; then
+        KOTLIN_HOME="/data/data/com.termux/files/usr/opt/kotlin"
+    fi
+fi
 
 if $cygwin; then
     # Remove spaces from KOTLIN_HOME on windows
     KOTLIN_HOME=`cygpath --windows --short-name "$KOTLIN_HOME"`
 fi
 
-[ -n "$JAVA_OPTS" ] || JAVA_OPTS="-Xmx512M -Xms128M"
+[ -n "$JAVA_OPTS" ] || JAVA_OPTS="-Xmx512M -Xms128M -Djansi.graceful=true -Djansi.passthrough=true -Dkotlin.colors.enabled=false"
 
 declare -a java_args
 declare -a kotlin_args
