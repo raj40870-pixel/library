@@ -1,2 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/sh
-exec /data/data/com.termux/files/usr/bin/mono $MONO_OPTIONS /data/data/com.termux/files/usr/lib/mono/4.5/mcs.exe "$@"
+#!/system/bin/sh
+MONO_BIN="$(if command -v mono >/dev/null 2>&1; then command -v mono; elif [ -x /usr/bin/mono ]; then echo /usr/bin/mono; elif [ -x "$PREFIX/bin/mono" ]; then echo "$PREFIX/bin/mono"; else echo /data/data/com.termux/files/usr/bin/mono; fi)"
+MCS_EXE="$(if [ -f /usr/lib/mono/4.5/mcs.exe ]; then echo /usr/lib/mono/4.5/mcs.exe; elif [ -f "$PREFIX/lib/mono/4.5/mcs.exe" ]; then echo "$PREFIX/lib/mono/4.5/mcs.exe"; else echo /data/data/com.termux/files/usr/lib/mono/4.5/mcs.exe; fi)"
+exec "$MONO_BIN" $MONO_OPTIONS "$MCS_EXE" "$@"
