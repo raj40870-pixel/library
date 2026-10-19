@@ -17,3 +17,9 @@ npm-debug.log*
 # OS Metadata
 .DS_Store
 Thumbs.db
+
+# Uncompressed local binaries (tracked as .gz)
+*.so
+!*.so.gz
+**/lib/modules
+
