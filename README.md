@@ -2,7 +2,7 @@
 ### *Official Standalone Toolchain & Runtime Distribution Platform for CodeEditor IDE on Android (`aarch64` / ARM64)*
 
 [![Compiler CDN](https://img.shields.io/badge/Compiler_Library-Official_CDN-purple?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raj40870-pixel/library/releases)
-[![CodeEditor IDE](https://img.shields.io/badge/CodeEditor_IDE-v1.4.6_Compatible-blue?style=for-the-badge&logo=android&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
+[![CodeEditor IDE](https://img.shields.io/badge/CodeEditor_IDE-v1.4.7_Compatible-blue?style=for-the-badge&logo=android&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
 [![Official Website](https://img.shields.io/badge/Official_Website-Live_on_Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
 [![Architecture](https://img.shields.io/badge/Architecture-ARM64_%2F_aarch64-informational?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/raj40870-pixel/library)
 [![License](https://img.shields.io/badge/License-Apache_2.0-orange?style=for-the-badge)](licenses/Apache-2.0.txt)
@@ -11,7 +11,7 @@
 
 ## 🌐 Ecosystem Quick Links
 
-- 📱 **Official Android App (v1.4.6, versionCode 33, Target SDK 34 Compatibility Mode, package `app.code.editor`)**: [Available exclusively on the Official Web Portal](https://code-eidter-apk-website.vercel.app/)
+- 📱 **Official Android App (v1.4.7, versionCode 34, Target SDK 34 Compatibility Mode, package `app.code.editor`)**: [Available exclusively on the Official Web Portal](https://code-eidter-apk-website.vercel.app/)
 - 🌐 **Official Web Portal**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
 - 📦 **Latest Toolchain Release (CDN)**: [Official Toolchains CDN](https://github.com/raj40870-pixel/library/releases)
 
