@@ -13,7 +13,8 @@
 ## 🌐 Ecosystem Quick Links
 
 - 🏪 **Official Store Listing (Indus Appstore)**: [CodeEditor IDE on Indus Appstore](https://www.phonepeappstore.com/apps/education/code-editor/app.code.editor/?page=details&id=app.code.editor)
-- 📱 **Official Android App (v1.40, versionCode 37, Target SDK 36, package `app.code.editor`)**: Live on Indus Appstore
+- 📱 **Live Store Release**: Version 1.4.8 (versionCode 35, package `app.code.editor`) — Live on Indus Appstore
+- 🚀 **Latest Release (In Review)**: Version 1.40 (versionCode 37, Target SDK 36) — Submitted & In Review on Indus Appstore Developer Console
 - 🌐 **Official Web Portal**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
 - 📦 **Official Toolchain Release (CDN v1.3.1)**: [Official Toolchains v1.3.1 CDN](https://github.com/raj40870-pixel/library/releases/tag/v1.3.1)
 
