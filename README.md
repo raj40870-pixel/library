@@ -3,7 +3,7 @@
 
 [![Compiler CDN](https://img.shields.io/badge/Compiler_Library-Official_CDN-purple?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raj40870-pixel/library/releases)
 [![Indus Appstore](https://img.shields.io/badge/Indus_Appstore-Live_on_Store-00C853?style=for-the-badge&logo=googleplay&logoColor=white)](https://www.phonepeappstore.com/apps/education/code-editor/app.code.editor/?page=details&id=app.code.editor)
-[![CodeEditor IDE](https://img.shields.io/badge/CodeEditor_IDE-v1.4.9_Compatible-blue?style=for-the-badge&logo=android&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
+[![CodeEditor IDE](https://img.shields.io/badge/CodeEditor_IDE-v1.40_Compatible-blue?style=for-the-badge&logo=android&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
 [![Official Website](https://img.shields.io/badge/Official_Website-Live_on_Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://code-eidter-apk-website.vercel.app/)
 [![Architecture](https://img.shields.io/badge/Architecture-ARM64_%2F_aarch64-informational?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/raj40870-pixel/library)
 [![License](https://img.shields.io/badge/License-Apache_2.0-orange?style=for-the-badge)](licenses/Apache-2.0.txt)
@@ -13,7 +13,7 @@
 ## 🌐 Ecosystem Quick Links
 
 - 🏪 **Official Store Listing (Indus Appstore)**: [CodeEditor IDE on Indus Appstore](https://www.phonepeappstore.com/apps/education/code-editor/app.code.editor/?page=details&id=app.code.editor)
-- 📱 **Official Android App (v1.4.9, versionCode 36, Target SDK 36, package `app.code.editor`)**: Live on Indus Appstore
+- 📱 **Official Android App (v1.40, versionCode 37, Target SDK 36, package `app.code.editor`)**: Live on Indus Appstore
 - 🌐 **Official Web Portal**: [https://code-eidter-apk-website.vercel.app/](https://code-eidter-apk-website.vercel.app/)
 - 📦 **Official Toolchain Release (CDN v1.3.1)**: [Official Toolchains v1.3.1 CDN](https://github.com/raj40870-pixel/library/releases/tag/v1.3.1)
 
